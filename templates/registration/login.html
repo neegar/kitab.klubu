@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}login{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+    <h3>Daxil olun</h3>
+    <hr>
+    <div class='row text-left'>
+        <div class='col-md-6 offset-md-3'>
+            <div class='card'>
+                <div class='card-body'>
+                    <form action="{% url 'login' %}" method='post' enctype='multipart/form-data' novalidate>
+                        {{ form | crispy }}
+                        {% csrf_token %}
+                        <br>
+                        <button class = "btn btn-info btn-block" type="submit">daxil olun</button>
+                    </form><br>
+                    <div class = 'text-muted text-center'> 
+                        Yeni istifadəçi profili üçün
+                        <a href="{% url 'register' %}" class = "ml-2 text-info">qeydiyyatdan keçin</a><br>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}discussion{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+<div class='row justify-center'>
+    <div class='col'>
+        <h2 class='text-info'> {{ query_book.name }} </h3>
+        <h4 class='text-muted'> {{ query_book.author }} </h4>
+    </div>
+    <div class='col'>
+        <img src="{{query_book.image}}">
+    </div>
+</div>
+<div class='row'>
+    <div class='col'>
+    {% for item in query_discussion%}
+      <h5 class='text-info'>{{ item.user.first_name }} {{item.user.last_name}}:</h5>
+      <p class='text-dark'> {{item.comment}}</p>
+      {% comment %} <span class='text-muted mr-0'>{{item.comment.time}}</span> {% endcomment %}
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div class='row'>
+    <div class='div'>
+         <form action="{% url 'register' %}" method='post' enctype='multipart/form-data' novalidate>
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button class = "btn btn-info btn-block" type="submit">şərhinizi göndərin</button>
+        </form> 
+    </div>
+</div>
+{% endblock body %}

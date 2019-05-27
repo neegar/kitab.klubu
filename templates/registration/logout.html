@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+ {% block title %}logout{% endblock title %}
+
+{% block body %}
+    <h3>Kitab klubunu tərk etdiniz, yenə gözləyirik :)</h3>
+    <div class = 'text-muted'> 
+        Yeni istifadəçi profili üçün
+        <a href="{% url 'register' %}" class = "ml-1">qeydiyyatdan keçin</a><br>
+    </div>
+    <div class = 'text-muted'> 
+        Daha öncə qeydiyyatdan keçmisinizsə burdan
+        <a href="{% url 'login' %}" class = "ml-1">daxil olun</a>
+    </div>
+
+{% endblock body %}

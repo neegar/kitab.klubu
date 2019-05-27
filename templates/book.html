@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}book{% endblock title %}
+
+{% block body %}
+<div class = 'text-center'>
+
+<h5>Səsvermə üçün öz kitabınızı daxil edin</h5>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class ='container'>
+<form action = '' method = 'post' id='next-book-search'>
+{% csrf_token %}
+{{form}}
+<button type="submit" class ='btn btn-info'><i class="fa fa-search"></i></button>
+</form>
+<table class="table table-hover">
+  <tbody>
+  {% for about_book in query_results %}
+    <tr>
+        <td><a href="{% url 'discussion' about_book.pk %}"><img src = '{{about_book.image}}'></a> </td>
+        <td><a href="{% url 'discussion' about_book.pk %}"><p class='text-info'>{{about_book.name}}</p></a></td>
+        <td><p class='text-dark'>{{about_book.author}}</p></td>
+        <td><p class='text-dark'>{{about_book.vote}}</p></td>
+        <td><form action='{% url "votebook" about_book.id %}' method='post'>
+            {% csrf_token %}
+            <button class ='btn btn-info' type='submit' name = 'vote'>səs ver</button>
+            </form></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock body %}

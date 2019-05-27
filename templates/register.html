@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}register{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+    <div class='row text-left'>
+        <div class='col-md-6 offset-md-3 mt-2'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3>Qeydiyyatdan keçin</h3>
+                    <hr>
+                    <form action="{% url 'register' %}" method='post' enctype='multipart/form-data' novalidate>
+                        {{ form | crispy }}
+                        {% csrf_token %}
+                        <button class = "btn btn-info btn-block" type="submit">qeydiyyatdan keçin</button>
+                    </form>
+                    <br>
+                    <div class = 'text-muted text-center'> 
+                        Daha öncə qeydiyyatdan keçmisinizsə burdan
+                        <a href="{% url 'login' %}" class = "ml-1 text-info">daxil olun</a>
+                    </div>
+               </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

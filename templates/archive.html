@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}kitablar{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+    <h2 class='text-dark text-align-left'>Kitabxana</h2>
+
+<table class="table table-hover">
+  <tbody>
+  {% for item in query_results %}
+    <tr>
+        {% comment %} <td><a href='#'><img src="{{ item.image }}"></a> </td> {% endcomment %}
+        <td><a href="{% url 'discussion' item.pk %}"><p class='text-info'>{{ item.name }}</p></a></td>
+        <td><a href="{% url 'discussion' item.pk %}"><p class='text-dark'>{{ item.author }}</p></a></td>
+        <td><a href="{% url 'discussion' item.pk %}"><p class='text-muted'>{{ item.year }}</p></a></td>
+        {% comment %} <td><a href='#'><p class='text-info'>{{ item.vote }}</p></a></td> {% endcomment %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock body %}
+
+
+
+
+{% comment %}
+{% extends 'layout.html' %}
+
+{% block title %}archive{% endblock title %}
+
+{% block body %}
+<div class = 'container'>
+    <h2 class='text-dark text-align-left'>Kitabxana</h2>
+
+<table class="table table-hover">
+  <tbody>
+  {% for item in query_results %}
+    <tr>
+        <td><a href='#'><img src="{{ item.image }}"> </td>
+        <td><a href='#'><p class='text-info'>{{ item.tytle }}</p></a></td>
+        <td><a href='#'><p class='text-dark'>{{ item.author }}</p></a></td>
+        <td><a href='#'><p class='text-muted'>{{ item.year }}</p></a></td>
+        <td><a href='#'><p class='text-info'>{{ item.vote }}</p></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock body %} {% endcomment %}

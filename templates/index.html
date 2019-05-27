@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}home{% endblock title %}
+
+{% block body %}
+<div class = 'container text-center'>
+    <h3 class='text-dark justify-center'>Bu ay mazakirədə olan kitablarımız</h3>
+        <div class='row'>
+            {% for item in query_results %}
+            <div class='col-2'>
+                <a href="{% url 'discussion' item.CurrentBook.pk %}"> <img src="{{ item.CurrentBook.image }}" alt="#" class="img-thumbnail"></a><br>
+                <p class='text-dark'>{{ item.CurrentBook.name }}</p>
+            </div> 
+            {% endfor %}
+        </div>
+
+    <h4 class='text-dark d-inline-block'>Gələn ay üçün oxuyacağımız kitablar</h4> 
+    <a class='text-info' href="{% url 'nextbook' %}">səsvermədə iştirak et</a>
+        <div class='row'>
+            {% for item in query_archive %}
+            <div class='col-2'>
+               <a href="{% url 'discussion' item.pk %}"> <img src="{{ item.image }}" alt="#" class="img-thumbnail"></a><br>
+                <p class='text-dark'>{{ item.name }}</p>
+            </div> 
+            {% endfor %}
+        </div>
+</div>
+
+{% endblock body %}
